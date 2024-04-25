@@ -20,9 +20,16 @@ from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.authentication.views import UserViewSet, CSRFTokenView, CustomAuthToken, CustomLogout, CurrenUser
+from apps.cliente.views import ClienteViewSet, ProveedorViewSet
+from apps.inventario.views import ProductoCategoriaViewSet, ProductoViewSet, InventarioViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'clientes', ClienteViewSet)
+router.register(r'proveedores', ProveedorViewSet)
+router.register(r'productoCategorias', ProductoCategoriaViewSet)
+router.register(r'productos', ProductoViewSet)
+router.register(r'inventario', InventarioViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
