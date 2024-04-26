@@ -8,10 +8,19 @@ from apps.cart.context_processor import total_cart
 # Create your views here.
 
 def agregar_producto(request, producto_id):
-    cart = Cart(request)
-    producto = Producto.objects.get(id=producto_id)
-    cart.add(producto)
-    return redirect('index')
+    if request.user.is_authenticated:
+        cart = Cart(request)
+        producto = Producto.objects.get(id=producto_id)
+        cart.add(producto)
+        return redirect('index')
+    else:
+        return render(
+            request,
+            'authentication/login.html',
+            {
+                'error_message': 'Para poder añadir productos al carrito inicia sesion'
+            }
+        )
 
 
 def eliminar_producto(request, producto_id):
@@ -40,6 +49,11 @@ def ver_cart(request):
     productos_cart = []
     for key, value in cart:
         productos_cart.append(value)
-    print(productos_cart)
-    print(total)
-    return render(request, 'shop/shopping_cart.html', {'productos_cart': productos_cart, 'total': total})
+    return render(
+        request,
+        'shop/shopping_cart.html',
+        {
+            'productos_cart': productos_cart,
+            'total': total
+        }
+    )

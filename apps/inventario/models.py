@@ -7,12 +7,12 @@ from apps.cliente.models import Proveedor
 # Create your models here.
 
 
-class ProductoCategoria(models.Model):
+class Categoria(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
     description = models.TextField(max_length=500, default='', verbose_name='Descripcion')
 
     class Meta:
-        db_table = 'producto_categoria'
+        db_table = 'categoria'
         verbose_name_plural = 'Categorias'
         ordering = ['-id']
 
@@ -22,7 +22,7 @@ class ProductoCategoria(models.Model):
 
 class Producto(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
-    category = models.ForeignKey(ProductoCategoria, on_delete=models.CASCADE, verbose_name='Categoria')
+    category = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name='Categoria')
     price = models.FloatField(max_length=50, verbose_name='Precio')
     image = models.ImageField(upload_to='products', verbose_name='Imagen')
     description = models.TextField(max_length=250, verbose_name='Descripcion')

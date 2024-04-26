@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import ProductoCategoria, Producto, Inventario, OrdenCompra, CompraProducto
+from .models import Categoria, Producto, Inventario, OrdenCompra, CompraProducto
 
 
 class ProductoCategoriaSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.SerializerMethodField()
 
     class Meta:
-        model = ProductoCategoria
+        model = Categoria
         fields = '__all__'
 
     @staticmethod

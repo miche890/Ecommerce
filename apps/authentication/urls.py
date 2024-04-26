@@ -14,25 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
-from django.conf import settings
-from django.conf.urls.static import static
-from .views import (
-    CSRFTokenView,
-    CustomAuthToken,
-    CustomLogout,
-    CurrenUser,
-    iniciar_sesion,
-    perfil
-)
+from django.urls import path
+
+from .views import iniciar_sesion, perfil, cerrar_sesion
 
 urlpatterns = [
-    path('api/auth/login/', CustomAuthToken.as_view(), name='auth-login'),
-    path('api/auth/logout/', CustomLogout.as_view(), name='auth-logout'),
-    path('api/auth/csrf/', CSRFTokenView.as_view(), name='auth-csrf'),
-    path('api/auth/user/', CurrenUser.as_view(), name='auth-user'),
     path('login/', iniciar_sesion, name='login'),
+    path('logout/', cerrar_sesion, name='logout'),
     path('perfil/', perfil, name='perfil'),
 ]
