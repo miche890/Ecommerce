@@ -1,4 +1,9 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import render, redirect
+
 from django.middleware.csrf import get_token
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
@@ -92,6 +97,7 @@ class CustomAuthToken(ObtainAuthToken):
         - username (str): The username of the user.
         - password (str): The password of the user.
     """
+
     def post(self, request, *args, **kwargs):
         """
         Authenticate user and generate authentication token.
@@ -210,3 +216,25 @@ class CurrenUser(APIView):
             },
             status=HTTP_200_OK
         )
+
+
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'authentication/login.html', {'error_message': 'Usuario o contraseña incorrectos.'})
+
+    else:
+        return render(request, 'authentication/login.html')
+
+@login_required()
+def perfil(request):
+    return render(request, 'authentication/perfil.html')
+
+
+

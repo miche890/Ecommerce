@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Perfil de {{ user }}</title>
+{% endblock %}
+
+{% block header %}
+    {% include 'layouts/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column align-items-center py-4 mx-auto h-100">
+        <h1 class="h3">{{ user }}</h1>
+    </div>
+{% endblock %}

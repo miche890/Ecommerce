@@ -1,0 +1,173 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Ecommerce</title>
+{% endblock %}
+
+{% block header %}
+    {% include 'layouts/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body p-4">
+
+                            <div class="row">
+
+                                <div class="col-lg-7">
+                                    <h5 class="mb-3">
+                                        <a href="/" class="text-body text-decoration-none h2">
+                                            <i class='bx bx-arrow-back me-2'></i>
+                                            Seguir comprando
+                                        </a>
+                                    </h5>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div>
+                                            <p class="mb-1 h3 fw-semibold">Carrito de Compra</p>
+                                            <p class="mb-0 h5 fw-normal">Tienes {{ productos_cart|length }} productos en tu
+                                                carrito</p>
+                                        </div>
+                                    </div>
+
+                                    {% for producto in productos_cart %}
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div>
+                                                            <img src="{{ producto.image }}"
+                                                                 class="img-fluid rounded-3" alt="Shopping item"
+                                                                 style="width: 65px;">
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <h5>{{ producto.name }}</h5>
+                                                            <p class="small mb-0">{{ producto.description }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div style="width: 50px;">
+                                                            <h5 class="fw-normal mb-0">{{ producto.quantity }}</h5>
+                                                        </div>
+                                                        <div>
+                                                            <h5 class="mb-0">
+                                                                {% load humanize %}
+                                                                $ {{ producto.total|intcomma }}
+                                                            </h5>
+                                                        </div>
+                                                        <a href="{% url 'eliminar_producto' producto.product_id %}"
+                                                           style="color: #cecece;">
+                                                            <i class='bx bxs-trash h2 mb-0 ms-2'></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="col-lg-5">
+
+                                    <div class="card bg-primary text-white rounded-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                <h5 class="mb-0">Informacion de Tarjeta</h5>
+                                            </div>
+
+                                            <p class="small mb-2">Tipos de tarjeta</p>
+                                            <a href="#!" type="submit" class="text-white">
+                                                <i class='bx bxl-mastercard h1'></i>
+                                            </a>
+                                            <a href="#!" type="submit" class="text-white">
+                                                <i class='bx bxl-visa h1'></i>
+                                            </a>
+                                            <a href="#!" type="submit" class="text-white">
+                                                <i class='bx bxl-paypal h1'></i>
+                                            </a>
+
+                                            <form class="mt-4">
+                                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                                    <input type="text" id="typeName"
+                                                           class="form-control form-control-lg" siez="17"
+                                                           placeholder="Nombre del titular"
+                                                           name="name_titular"
+                                                    />
+                                                    <label class="form-label" for="typeName">
+                                                        Nombre titular de la tarjeta
+                                                    </label>
+                                                </div>
+
+                                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                                    <input type="text" id="typeText"
+                                                           class="form-control form-control-lg" siez="17"
+                                                           placeholder="1234 5678 9012 3457" minlength="19"
+                                                           maxlength="19" name="number_card"
+                                                    />
+                                                    <label class="form-label" for="typeText">
+                                                        Numero de la tarjeta
+                                                    </label>
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <div data-mdb-input-init class="form-outline form-white">
+                                                            <input type="text" id="typeExp"
+                                                                   class="form-control form-control-lg"
+                                                                   placeholder="MM/YYYY" size="7" id="exp" minlength="7"
+                                                                   maxlength="7" name="date_expiration"/>
+                                                            <label class="form-label" for="typeExp">Expiración</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div data-mdb-input-init class="form-outline form-white">
+                                                            <input type="password" id="typeText"
+                                                                   class="form-control form-control-lg"
+                                                                   placeholder="&#9679;&#9679;&#9679;" size="1"
+                                                                   minlength="3" maxlength="3" name="cvv"/>
+                                                            <label class="form-label" for="typeText">CVV</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <hr class="my-4">
+
+                                            <div class="d-flex justify-content-between mb-4 h3">
+                                                <p class="mb-2">Total</p>
+                                                <p class="mb-2">
+                                                    {% load humanize %}
+                                                    $ {{ total.total_cart|intcomma }}
+                                                </p>
+                                            </div>
+
+                                            <button type="button" data-mdb-button-init data-mdb-ripple-init
+                                                    class="btn btn-info btn-block btn-lg">
+                                                <div class="d-flex justify-content-between">
+                                                    <span> Ordenar
+                                                        <i class='bx bx-arrow-back bx-rotate-180 mb-0'></i>
+                                                    </span>
+                                                </div>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

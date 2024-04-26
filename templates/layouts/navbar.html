@@ -1,0 +1,56 @@
+<nav class="p-3 text-bg-dark" data-bs-theme="dark">
+    <!-- Navbar content -->
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a class="navbar-brand" href="/">Ecommerce</a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {#                <li><a href="#" class="nav-link px-2 ">Features</a></li>#}
+                {#                <li><a href="#" class="nav-link px-2 ">Pricing</a></li>#}
+                {#                <li><a href="#" class="nav-link px-2 ">FAQs</a></li>#}
+                {#                <li><a href="#" class="nav-link px-2 ">About</a></li>#}
+            </ul>
+
+            <div class="text-end d-flex" >
+                <a href="{% url 'ver_cart' %}" class="btn btn-sm btn-light me-2">
+                    <i class='bx bxs-cart'> Carrito </i>
+                    <span class="badge text-bg-danger">
+                        {{ productos_cart|length }}
+                    </span>
+                </a>
+                {% if not user.username %}
+                    <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Iniciar sesion</a>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
+                {% else %}
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis show text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class='bx bxs-user-circle h3 m-0'></i>
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = window.location.pathname
+            console.log(url)
+            const activeLink = document.querySelector('a[href="' + url + '"]')
+
+            if (activeLink) {
+                activeLink.classList.add('active')
+            }
+        })
+    </script>
+</nav>
+

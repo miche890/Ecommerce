@@ -15,6 +15,7 @@ class Cliente(models.Model):
     class Meta:
         db_table = 'cliente'
         verbose_name_plural = "Clientes"
+        ordering = ['-id']
 
     def __str__(self):
         return self.name
@@ -33,6 +34,7 @@ class Proveedor(models.Model):
     class Meta:
         db_table = 'proveedor'
         verbose_name_plural = "Proveedores"
+        ordering = ['-id']
 
     def __str__(self):
         return self.name

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProductoCategoria, Producto, Inventario
+from .models import ProductoCategoria, Producto, Inventario, OrdenCompra, CompraProducto
 
 
 # Register your models here.
@@ -13,8 +13,8 @@ admin.site.register(ProductoCategoria, ProductoCategoriaAdmin)
 
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'description', 'category', 'price']
-    list_filter = ['category']
+    list_display = ['id', 'name', 'description', 'category', 'price', 'proveedor']
+    list_filter = ['category', 'proveedor']
     search_fields = ['id', 'name']
 
 
@@ -28,3 +28,31 @@ class InventarioAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Inventario, InventarioAdmin)
+
+
+class OrdenCompraAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'date', 'get_products', 'status']
+    list_filter = ['date', 'status', 'user']
+    search_fields = ['id', 'user__username', 'products__name']
+
+    def get_products(self, obj):
+        return ', '.join([p.name for p in obj.products.all()])
+
+    get_products.short_description = 'Productos'
+
+
+admin.site.register(OrdenCompra, OrdenCompraAdmin)
+
+
+class CompraProductoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'get_product_price', 'quantity', 'orden_compra']
+    list_filter = ['orden_compra', 'product']
+    search_fields = ['id', 'product__name', 'orden_compra']
+
+    def get_product_price(self, obj):
+        return obj.product.price
+
+    get_product_price.short_description = 'Precio'
+
+
+admin.site.register(CompraProducto, CompraProductoAdmin)
