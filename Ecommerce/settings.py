@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+import environ
+from django.core.management.utils import get_random_secret_key
 import dj_database_url
 from pathlib import Path
 import django.contrib.staticfiles
@@ -17,34 +19,42 @@ import django.contrib.staticfiles
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pjtpgrdx_(b-tq5w2(gmhh7+6x-2%s8m6v=x@vgck#)h9(jw1o'
+SECRET_KEY = env.str('SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ecommerce-app.fly.dev']  # <-- Updated!
 
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-app.fly.dev']  # <-- Updated!
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    'corsheaders',
     'apps.authentication',
     'apps.cliente',
     'apps.inventario',
@@ -78,16 +88,27 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
 ]
+
+# Cookies
+
+SESSION_COOKIE_NAME = 'sessionid'  # use the sessionid in your views code
+# the module to store sessions data
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+# age of cookie in seconds (default: 2 weeks)
+SESSION_COOKIE_AGE = 24 * 60 * 60 * 7  # the number of seconds for only 7 for example
+# whether a user's session cookie expires when the web browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+# whether the session cookie should be secure (https:// only)
+SESSION_COOKIE_SECURE = False
 
 ROOT_URLCONF = 'Ecommerce.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR / 'templates')],
+        'DIRS': [str(BASE_DIR) + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,14 +129,11 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': dj_database_url.config(
-    #     default='postgres://ecommerce_app_db_tcyj_user:gEW3B8FUZ9N2ITGxx9cWD2QL8heaPAB7@dpg-com14g21hbls7398t1gg-a/ecommerce_app_db_tcyj',
-    #     conn_max_age=600
-    # )
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db(default='sqlite://db.sqlite3')  # <-- Updated!
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
@@ -153,22 +171,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# if not DEBUG:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# else:
+#     STATICFILES_DIRS = [
+#         BASE_DIR / 'static',
+#     ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-print(BASE_DIR)
+# print(BASE_DIR)
 # print(STATIC_ROOT)
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -268,4 +287,24 @@ JAZZMIN_UI_TWEAKS = {
         "danger": "btn-danger",
         "success": "btn-success"
     }
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logfile.log',  # Ruta al archivo de logs
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
