@@ -236,7 +236,7 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "cliente.Cliente": "fas fa-address-book",
         "cliente.Proveedor": "fas fa-warehouse",
-        "inventario.ProductoCategoria": "fas fa-tags",
+        "inventario.Categoria": "fas fa-tags",
         "inventario.Producto": "fas fa-shapes",
         "inventario.Inventario": "fas fa-boxes",
         "inventario.OrdenCompra": "fas fa-receipt",
