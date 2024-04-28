@@ -27,7 +27,7 @@ def eliminar_producto(request, producto_id):
     cart = Cart(request)
     producto = Producto.objects.get(id=producto_id)
     cart.remove(producto)
-    return redirect('index')
+    return redirect('ver_cart')
 
 
 def restar_producto(request, producto_id):
@@ -44,16 +44,4 @@ def limpiar_cart(request):
 
 
 def ver_cart(request):
-    cart = Cart(request).cart.items()
-    total = total_cart(request)
-    productos_cart = []
-    for key, value in cart:
-        productos_cart.append(value)
-    return render(
-        request,
-        'shop/shopping_cart.html',
-        {
-            'productos_cart': productos_cart,
-            'total': total
-        }
-    )
+    return render(request, 'shop/shopping_cart.html')

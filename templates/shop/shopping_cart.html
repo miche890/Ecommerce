@@ -31,13 +31,13 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
                                             <p class="mb-1 h3 fw-semibold">Carrito de Compra</p>
-                                            <p class="mb-0 h5 fw-normal">Tienes {{ productos_cart|length }} productos en
+                                            <p class="mb-0 h5 fw-normal">Tienes {{ total_products_cart }} productos en
                                                 tu
                                                 carrito</p>
                                         </div>
                                     </div>
 
-                                    {% for producto in productos_cart %}
+                                    {% for producto in products_cart %}
                                         <div class="card mb-3">
                                             <div class="card-body">
                                                 <div class="d-flex flex-wrap justify-content-around justify-content-between">
@@ -143,7 +143,7 @@
                                                 <p class="mb-2">Total</p>
                                                 <p class="mb-2">
                                                     {% load humanize %}
-                                                    $ {{ total.total_cart|intcomma }}
+                                                    $ {{ total_cart|intcomma }}
                                                 </p>
                                             </div>
 
@@ -152,7 +152,7 @@
                                                 <div class="d-flex justify-content-between">
                                                     <span>
                                                         {% load humanize %}
-                                                        $ {{ total.total_cart|intcomma }}
+                                                        $ {{ total_cart|intcomma }}
                                                     </span>
                                                     <span> Ordenar
                                                         <i class='bx bx-arrow-back bx-rotate-180 mb-0'></i>
