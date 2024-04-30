@@ -213,16 +213,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
-    'site_title': 'Ecommerce',
-    'site_header': 'Ecommerce',
-    'site_brand': 'Ecommerce',
-    'site_logo': None,
-    'login_logo': None,
+    'site_title': 'Medtgol',
+    'site_header': 'Medtgol',
+    'site_brand': 'Medtgol',
+    'site_logo': 'img/logos/logo-removebg-preview.png',
+    'login_logo': 'img/logos/logo-removebg-preview.png',
     'login_logo_dark': None,
-    'site_logo_classes': 'img-circle img-bordered d-none',
+    'site_logo_classes': 'brand-image-xl',
     'site_icon': None,
-    'welcome_sign': 'Welcome to Ecommerce Admin',
-    'copyright': 'Ecommerce Admin',
+    'welcome_sign': 'Bienvenido al Sitio Administrativo',
+    'copyright': 'Medtgol Admin',
     # 'search_model': ['auth.User', 'auth.Group'],
     'user_avatar': None,
     # TOP MENU
@@ -260,7 +260,7 @@ JAZZMIN_SETTINGS = {
     # RELATED MODAL
     'related_modal_active': False,
     # UI TWEAKS
-    'custom_css': None,
+    'custom_css': 'css/jazzmin.css',
     'custom_js': None,
     'use_google_fonts_cdn': True,
     'show_ui_builder': False,
