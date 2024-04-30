@@ -15,7 +15,7 @@
 
     <section class="py-5">
         <div class="container">
-            <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="productos">
+            <section class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" id="productos">
                 {% for producto in productos %}
                     <div class="col">
                         <div class="card shadow-sm h-100">
@@ -28,13 +28,13 @@
                                 <p class="card-text fw-light">{{ producto.description }}</p>
                                 {% load humanize %}
                                 <p class="card-text text-danger fw-bold">$ {{ producto.price|intcomma }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                    <small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>
                                     <div class="btn-group">
                                         <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">Añadir
                                             al Caritto</a>
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
                                     </div>
-                                    <small class="text-body-secondary">{{ producto.category }}</small>
                                 </div>
                             </div>
                         </div>
