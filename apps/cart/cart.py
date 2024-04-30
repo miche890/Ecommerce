@@ -15,7 +15,7 @@ class Cart:
                 'description': product.description,
                 'quantity': 1,
                 'total': product.price,
-                'image': product.image.url,
+                'image': product.imagen.url,
             }
         else:
             for key, value in self.cart.items():
