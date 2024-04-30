@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 import environ
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
 from pathlib import Path
@@ -44,6 +49,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 INSTALLED_APPS = [
     'jazzmin',
     'corsheaders',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,8 +64,15 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.cliente',
     'apps.inventario',
-    "apps.cart"
+    "apps.cart",
 ]
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', default='danzjuq3j'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', default='396452838242911'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', default='llk-KC-UcrOtkxTi7u_qGBZjc6Q'),
+    secure=True,
+)
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -213,15 +226,14 @@ JAZZMIN_SETTINGS = {
     # 'search_model': ['auth.User', 'auth.Group'],
     'user_avatar': None,
     # TOP MENU
-    'topmenu_links': [
-        {'name': 'Panel', 'url': 'admin:index', 'permissions': ['auth.view_user']},
-        {'model': 'auth.User'},
-        {'model': 'cliente.Cliente'},
-        {'model': 'cliente.Proveedor'},
-        {'model': 'inventario.Producto'},
-        {'model': 'inventario.Inventario'},
-        # {'app': 'projects'},
-    ],
+    # 'topmenu_links': [
+    #     {'name': 'Panel', 'url': 'admin:index', 'permissions': ['auth.view_user']},
+    #     {'model': 'auth.User'},
+    #     {'model': 'cliente.Cliente'},
+    #     {'model': 'cliente.Proveedor'},
+    #     {'model': 'inventario.Producto'},
+    #     {'model': 'inventario.Inventario'},
+    # ],
     # USER MENU
     'usermenu_links': [],
     # SIDE MENU
@@ -267,29 +279,28 @@ JAZZMIN_UI_TWEAKS = {
     "accent": "accent-primary",
     "navbar": "navbar-white navbar-light",
     "no_navbar_border": False,
-    "navbar_fixed": False,
+    "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
-    "sidebar_fixed": False,
+    "sidebar_fixed": True,
     "sidebar": "sidebar-dark-primary",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": False,
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
-    "sidebar_nav_flat_style": False,
-    "theme": "cosmo",
+    "sidebar_nav_flat_style": True,
+    "theme": "default",
     "dark_mode_theme": None,
     "button_classes": {
         "primary": "btn-outline-primary",
         "secondary": "btn-outline-secondary",
-        "info": "btn-info",
-        "warning": "btn-warning",
-        "danger": "btn-danger",
-        "success": "btn-success"
+        "info": "btn-outline-info",
+        "warning": "btn-outline-warning",
+        "danger": "btn-outline-danger",
+        "success": "btn-outline-success"
     }
 }
-
 
 LOGGING = {
     'version': 1,

@@ -5,7 +5,7 @@ from .models import Categoria, Producto, Inventario, OrdenCompra, CompraProducto
 # Register your models here.
 
 class ProductoCategoriaAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'description']
+    list_display = ['name', 'description']
     search_fields = ['id', 'name']
 
 
@@ -13,7 +13,7 @@ admin.site.register(Categoria, ProductoCategoriaAdmin)
 
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'description', 'category', 'price', 'proveedor']
+    list_display = ['name', 'description', 'category', 'price', 'proveedor']
     list_filter = ['category', 'proveedor']
     search_fields = ['id', 'name']
 
@@ -22,7 +22,7 @@ admin.site.register(Producto, ProductoAdmin)
 
 
 class InventarioAdmin(admin.ModelAdmin):
-    list_display = ['id', 'product', 'quantity', 'last_updated']
+    list_display = ['product', 'quantity', 'last_updated']
     list_filter = ['last_updated']
     search_fields = ['id', 'product', 'quantity']
 
@@ -41,7 +41,7 @@ class OrdenCompraAdmin(admin.ModelAdmin):
     get_products.short_description = 'Productos'
 
 
-admin.site.register(OrdenCompra, OrdenCompraAdmin)
+# admin.site.register(OrdenCompra, OrdenCompraAdmin)
 
 
 class CompraProductoAdmin(admin.ModelAdmin):
@@ -55,4 +55,4 @@ class CompraProductoAdmin(admin.ModelAdmin):
     get_product_price.short_description = 'Precio'
 
 
-admin.site.register(CompraProducto, CompraProductoAdmin)
+# admin.site.register(CompraProducto, CompraProductoAdmin)

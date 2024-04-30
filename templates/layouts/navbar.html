@@ -11,7 +11,7 @@
                 {#                <li><a href="#" class="nav-link px-2 ">About</a></li>#}
             </ul>
 
-            <div class="text-end d-flex" >
+            <div class="text-end d-flex">
                 {% if not user.username %}
                     <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Iniciar sesion</a>
                     <button type="button" class="btn btn-warning">Registrarse</button>
@@ -41,16 +41,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const url = window.location.pathname
-            console.log(url)
-            const activeLink = document.querySelector('a[href="' + url + '"]')
 
-            if (activeLink) {
-                activeLink.classList.add('active')
-            }
-        })
-    </script>
 </nav>
 

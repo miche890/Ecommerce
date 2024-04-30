@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+import cloudinary
+from cloudinary.models import CloudinaryField
+
 from apps.cliente.models import Proveedor
 
 
@@ -24,7 +27,7 @@ class Producto(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
     category = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name='Categoria')
     price = models.FloatField(max_length=50, verbose_name='Precio')
-    image = models.ImageField(upload_to='products', verbose_name='Imagen')
+    imagen = CloudinaryField(resource_type='image', verbose_name='Imagen', default='')
     description = models.TextField(max_length=250, verbose_name='Descripcion')
     proveedor = models.ForeignKey(Proveedor, default=1, on_delete=models.CASCADE, verbose_name='Proveedor')
 
