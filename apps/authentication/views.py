@@ -34,3 +34,26 @@ def perfil(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect('index')
+
+
+def registrar_usuario(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+        confirm_password = request.POST['confirm_password']
+
+        if password != confirm_password:
+            error_message = 'Las contraseñas no coinciden.'
+            return render(request, 'authentication/register.html', {'error_message': error_message})
+
+        if User.objects.filter(username=username).exists():
+            error_message = 'El nombre de usuario ya esta registrado.'
+            return render(request, 'authentication/register.html', {'error_message': error_message})
+
+        user = User.objects.create_user(username, email, password)
+        login(request, user)
+        return redirect('index')
+
+    else:
+        return render(request, 'authentication/register.html')

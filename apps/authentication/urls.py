@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import iniciar_sesion, perfil, cerrar_sesion
+from .views import iniciar_sesion, perfil, cerrar_sesion, registrar_usuario
 
 urlpatterns = [
     path('login/', iniciar_sesion, name='login'),
     path('logout/', cerrar_sesion, name='logout'),
     path('perfil/', perfil, name='perfil'),
+    path('register/', registrar_usuario, name='register'),
 ]
