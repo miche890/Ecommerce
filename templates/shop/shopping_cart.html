@@ -49,7 +49,11 @@
                                                         </div>
                                                         <div class="ms-3">
                                                             <h5>{{ producto.name }}</h5>
-                                                            <p class="small mb-0">{{ producto.description }}</p>
+                                                            {% if producto.description|length > 30 %}
+                                                                <p class="card-text fw-light">{{ producto.description|slice:30 }}...</p>
+                                                            {% else %}
+                                                                <p class="card-text fw-light">{{ producto.description }}</p>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-row align-items-center m-1">
