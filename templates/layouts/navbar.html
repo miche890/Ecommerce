@@ -1,36 +1,56 @@
-<nav class="p-3 text-bg-dark" data-bs-theme="dark">
-    <!-- Navbar content -->
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a class="navbar-brand" href="/">
-                <img class="w-25" src="https://i.postimg.cc/vm0s1SKS/Logo-nombre.png" alt="Logo medtgol">
-{#                <img class="w-25" src="https://i.postimg.cc/hjgQBqPw/logo-removebg-preview.png" alt="logo medtgol">#}
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid justify-content-start">
+        <div class="d-flex w-100">
+            <a class="navbar-brand ms-2" href="/">
+                <img src="{% static 'img/logos/Logo-nombre.png' %}" alt="Logo medtgol" width="100px">
             </a>
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                {#                <li><a href="#" class="nav-link px-2 ">Features</a></li>#}
-                {#                <li><a href="#" class="nav-link px-2 ">Pricing</a></li>#}
-                {#                <li><a href="#" class="nav-link px-2 ">FAQs</a></li>#}
-                {#                <li><a href="#" class="nav-link px-2 ">About</a></li>#}
-            </ul>
+            <div class="btn-group">
+                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Menu
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
 
-            <div class="text-end d-flex">
-                {% if not user.username %}
-                    <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Iniciar sesion</a>
-                    <a class="btn btn-warning" href="{% url 'register' %}">Registrarse</a>
-                {% else %}
-                    <a href="{% url 'ver_cart' %}" class="btn btn-light me-2">
-                        <i class='bx bxs-cart'> Carrito </i>
-                        <span class="badge text-bg-danger">
-                            {{ total_products_cart }}
-                        </span>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-end w-100">
+
+            <form class="d-flex" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar..."
+                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">
+                        <i class='bx bx-search'></i>
+                    </button>
+                </div>
+            </form>
+            
+            {% if not user.username %}
+                <a class="btn rounded-circle btn-dark mx-1" href="{% url 'login' %}">
+                    <i class='bx bxs-user'></i>
+                </a>
+            {% else %}
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'ver_cart' %}" class="btn btn-light mx-1 d-flex align-items-center">
+                        <i class='bx bxs-cart h3 m-0'></i>
+                        <span class="badge text-bg-danger">{{ total_products_cart }}</span>
                     </a>
-                    <div class="dropdown text-end">
-                        <a href="#" class="d-block link-body-emphasis show text-decoration-none dropdown-toggle"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown">
+                        <button class="btn btn-light mx-1 dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                             <i class='bx bxs-user-circle h3 m-0'></i>
-                        </a>
-                        <ul class="dropdown-menu text-small">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -38,12 +58,8 @@
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
                         </ul>
                     </div>
-                {% endif %}
-
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
-
-
 </nav>
-

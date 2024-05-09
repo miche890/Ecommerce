@@ -3,6 +3,7 @@
 
 {% block head %}
     <title>Ecommerce</title>
+    <link href="{% static 'css/nav-categorias.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block header %}
@@ -10,6 +11,8 @@
 {% endblock %}
 
 {% block body %}
+
+    {% include 'ui/categorias.html' %}
 
     {% include 'ui/carrusel.html' %}
 
@@ -23,13 +26,13 @@
                                 <img src="{{ producto.imagen.url }}" alt="imagen de {{ producto.name }}"
                                      class="bd-placeholder-img card-img-top img-fluid p-1">
                             </div>
-                            <div class="card-body d-flex flex-column justify-content-end">
+                            <div class="card-body d-flex flex-column justify-content-end align-items-center">
                                 <p class="card-text">{{ producto.name }}</p>
-                                {% if producto.description|length > 30 %}
-                                    <p class="card-text fw-light">{{ producto.description|slice:30 }}...</p>
-                                {% else %}
-                                    <p class="card-text fw-light">{{ producto.description }}</p>
-                                {% endif %} 
+{#                                {% if producto.description|length > 30 %}#}
+{#                                    <p class="card-text fw-light">{{ producto.description|slice:30 }}...</p>#}
+{#                                {% else %}#}
+{#                                    <p class="card-text fw-light">{{ producto.description }}</p>#}
+{#                                {% endif %} #}
                                 {% load humanize %}
                                 <p class="card-text text-danger fw-bold">$ {{ producto.price|intcomma }}</p>
                                 <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -47,109 +50,4 @@
             </section>
         </div>
     </section>
-
-    {#    <script>#}
-    {#        const request = {#}
-    {#            method: 'GET',#}
-    {#            headers: {#}
-    {#                Accept: 'application/json',#}
-    {#                'Content-Type': 'application/json;charset=UTF-8',#}
-    {#                'X-CSRFToken': '{{ csrf_token }}'#}
-    {#            }#}
-    {#        }#}
-    {##}
-    {#        fetch('http://localhost:8000/api/productos/', request)#}
-    {#            .then((response) => response.json())#}
-    {#            .then((data) => {#}
-    {#                console.log(data)#}
-    {#                data.results.forEach((producto) => addProducto(producto))#}
-    {#            }).catch((error) => {#}
-    {#            console.error('Error al traer los productos', error)#}
-    {#        })#}
-    {##}
-    {#        const addProducto = (producto) => {#}
-    {#            const sectionProductos = document.getElementById('productos')#}
-    {##}
-    {#            const article = document.createElement('article')#}
-    {#            article.classList.add('col')#}
-    {##}
-    {#            const card = document.createElement('div')#}
-    {#            card.classList.add('card')#}
-    {##}
-    {#            const img = document.createElement('img')#}
-    {#            img.src = producto.image#}
-    {#            img.alt = producto.name#}
-    {#            img.classList.add('card-img-top')#}
-    {##}
-    {#            const cardBody = document.createElement('div')#}
-    {#            cardBody.classList.add('card-body')#}
-    {##}
-    {#            const cardTitle = document.createElement('h5')#}
-    {#            cardTitle.innerText = producto.name#}
-    {#            cardTitle.classList.add('card-title')#}
-    {##}
-    {#            const cardInfo = document.createElement('p')#}
-    {#            cardInfo.innerText = producto.price#}
-    {#            cardInfo.classList.add('card-text')#}
-    {##}
-    {#            const divCantidad = document.createElement('div')#}
-    {#            divCantidad.classList.add('d-flex')#}
-    {##}
-    {#            const btnMinus = document.createElement('button')#}
-    {#            btnMinus.type = 'button'#}
-    {#            btnMinus.classList.add('btn')#}
-    {#            btnMinus.classList.add('btn-sm')#}
-    {#            btnMinus.classList.add('btn-dark')#}
-    {##}
-    {#            const boxIconMinus = document.createElement('i')#}
-    {#            boxIconMinus.classList.add('bx')#}
-    {#            boxIconMinus.classList.add('bxs-chevron-left')#}
-    {#            btnMinus.appendChild(boxIconMinus)#}
-    {##}
-    {#            const inputCantidad = document.createElement('input')#}
-    {#            inputCantidad.type = 'numeric'#}
-    {#            inputCantidad.id = `cantidadProducto${producto.id}`#}
-    {#            inputCantidad.value = '1'#}
-    {#            inputCantidad.classList.add('h-75')#}
-    {#            inputCantidad.classList.add('w-25')#}
-    {#            inputCantidad.classList.add('input-group-text')#}
-    {##}
-    {#            const btnSum = document.createElement('button')#}
-    {#            btnSum.type = 'button'#}
-    {#            btnSum.classList.add('btn')#}
-    {#            btnSum.classList.add('btn-sm')#}
-    {#            btnSum.classList.add('btn-dark')#}
-    {##}
-    {#            const boxIconSum = document.createElement('i')#}
-    {#            boxIconSum.classList.add('bx')#}
-    {#            boxIconSum.classList.add('bxs-chevron-right')#}
-    {#            btnSum.appendChild(boxIconSum)#}
-    {##}
-    {#            const btnAddCart = document.createElement('button')#}
-    {#            btnAddCart.innerText = 'Añadir al carrito'#}
-    {#            btnAddCart.type = 'button'#}
-    {#            btnAddCart.classList.add('btn')#}
-    {#            btnAddCart.classList.add('btn-sm')#}
-    {#            btnAddCart.classList.add('btn-info')#}
-    {#            btnAddCart.classList.add('ms-1')#}
-    {#            btnAddCart.classList.add('text-nowrap')#}
-    {##}
-    {#            const cardFooter = document.createElement('div')#}
-    {#            cardFooter.classList.add('card-footer')#}
-    {#            cardFooter.classList.add('d-flex')#}
-    {##}
-    {#            sectionProductos.appendChild(article)#}
-    {#            article.appendChild(card)#}
-    {#            card.appendChild(img)#}
-    {#            card.appendChild(cardBody)#}
-    {#            cardBody.appendChild(cardTitle)#}
-    {#            cardBody.appendChild(cardInfo)#}
-    {#            card.appendChild(cardFooter)#}
-    {#cardFooter.appendChild(divCantidad)#}
-    {#            cardFooter.appendChild(btnMinus)#}
-    {#            cardFooter.appendChild(inputCantidad)#}
-    {#            cardFooter.appendChild(btnSum)#}
-    {#            cardFooter.appendChild(btnAddCart)#}
-    {#        }#}
-    {#    </script>#}
 {% endblock %}

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Categoria, Producto, Inventario, OrdenCompra, CompraProducto
 
+from apps.inventario.models import CompraProducto
+
 
 # Register your models here.
 

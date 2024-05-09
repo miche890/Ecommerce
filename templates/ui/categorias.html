@@ -1,0 +1,7 @@
+{% load static %}
+<div class="scrollmenu">
+    <a class="text-capitalize">Promociones</a>
+    {% for categoria in categorias %}
+        <a class="text-capitalize">{{ categoria.name }}</a>
+    {% endfor %}
+</div>
