@@ -2,6 +2,6 @@
 <div class="scrollmenu">
     <a class="text-uppercase">Promociones</a>
     {% for categoria in categorias %}
-        <a class="text-uppercase">{{ categoria.name }}</a>
+        <a href="?categoria={{ categoria.name }}" class="text-uppercase">{{ categoria.name }}</a>
     {% endfor %}
 </div>
