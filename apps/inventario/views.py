@@ -23,7 +23,7 @@ def index(request):
         productos = filtro(productos, categoria)
 
     # Paginar productos
-    paginator = Paginator(productos, 2)  # Muestra 20 por pagina
+    paginator = Paginator(productos, 20)  # Muestra 20 por pagina
     numero_pagina = request.GET.get('page')
     page_obj = paginator.get_page(numero_pagina)
 
