@@ -35,7 +35,7 @@
 {#                                {% endif %} #}
                                 {% load humanize %}
                                 <p class="card-text text-danger fw-bold">$ {{ producto.price|intcomma }}</p>
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                <div class="d-flex justify-content-between align-items-center flex-wrap w-100">
                                     <small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>
                                     <div class="btn-group-vertical w-100">
                                         <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">Añadir
