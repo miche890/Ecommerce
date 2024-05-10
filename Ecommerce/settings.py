@@ -132,7 +132,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'apps.cart.context_processor.total_cart',
                 'apps.cart.context_processor.products_cart',
-                'apps.marketing.context_processor.get_banners'
+                'apps.marketing.context_processor.get_banners',
+                'apps.inventario.context_processor.get_categorias'
             ],
         },
     },

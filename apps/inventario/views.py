@@ -9,8 +9,6 @@ from ..cart.cart import Cart
 # Create your views here.
 
 def index(request):
-    categorias = Categoria.objects.all()
-
     consulta = request.GET.get('consulta', '')
     if consulta:
         productos = busqueda(consulta)
@@ -31,7 +29,6 @@ def index(request):
         request,
         'index.html',
         {
-            'categorias': categorias,
             'productos': productos,
             'page_obj': page_obj
         }

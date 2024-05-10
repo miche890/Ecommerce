@@ -7,7 +7,7 @@ from apps.inventario.models import CompraProducto
 # Register your models here.
 
 class ProductoCategoriaAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description']
+    list_display = ['name', 'description', 'destacada']
     search_fields = ['id', 'name']
 
 

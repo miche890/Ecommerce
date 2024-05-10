@@ -13,6 +13,7 @@ from apps.cliente.models import Proveedor
 class Categoria(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
     description = models.TextField(max_length=500, default='', verbose_name='Descripcion')
+    destacada = models.BooleanField(default=False, verbose_name='Destacada')
 
     class Meta:
         db_table = 'categoria'
