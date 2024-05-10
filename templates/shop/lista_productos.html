@@ -1,5 +1,6 @@
 <section class="py-3">
     <div class="container">
+        <h3 class="text-center mt-5 mb-3 text-azul-medtgol">Productos</h3>
         <section class="row row-cols-2 row-cols-sm-2 row-cols-md-5 g-2" id="productos">
             {% if page_obj|length < 1 %}
                 <div class="alert alert-danger w-100 text-center">
@@ -20,7 +21,7 @@
                             {% load humanize %}
                             <p class="card-text text-danger fw-bold small m-0">$ {{ producto.price|intcomma }}</p>
                             <div class="d-flex justify-content-around align-items-center flex-wrap mt-1">
-{#                                <small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>#}
+                                {#                                <small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>#}
                                 <div class="btn-group-vertical">
                                     <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">Añadir
                                         al Caritto</a>
