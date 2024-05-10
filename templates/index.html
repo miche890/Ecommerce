@@ -8,14 +8,10 @@
 
 {% block header %}
     {% include 'layouts/navbar.html' %}
+    {% include 'ui/categorias.html' %}
 {% endblock %}
 
 {% block body %}
-    
-    {% include 'ui/categorias.html' %}
-
     {% include 'ui/carrusel.html' %}
-
     {% include 'shop/lista_productos.html' %}
-
 {% endblock %}

@@ -1,5 +1,5 @@
 {% load static %}
-<div class="scrollmenu">
+<div class="scrollmenu bg-body-tertiary">
     <a class="text-uppercase">Promociones</a>
     {% for categoria in categorias %}
         <a href="?categoria={{ categoria.name }}" class="text-uppercase">{{ categoria.name }}</a>

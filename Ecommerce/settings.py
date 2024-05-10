@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'apps.cliente',
     'apps.inventario',
     "apps.cart",
+    "apps.marketing"
 ]
 
 cloudinary.config(
@@ -131,6 +132,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'apps.cart.context_processor.total_cart',
                 'apps.cart.context_processor.products_cart',
+                'apps.marketing.context_processor.get_banners'
             ],
         },
     },
@@ -253,6 +255,7 @@ JAZZMIN_SETTINGS = {
         "inventario.Inventario": "fas fa-boxes",
         "inventario.OrdenCompra": "fas fa-receipt",
         "inventario.CompraProducto": "fas fa-shopping-cart",
+        "marketing.Banners": "fas fa-image",
         'authtoken.TokenProxy': 'fas fa-key'
     },
     'default_icon_parents': 'fas fa-chevron-circle-right',
