@@ -14,6 +14,7 @@ class Categoria(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
     description = models.TextField(max_length=500, default='', verbose_name='Descripcion')
     destacada = models.BooleanField(default=False, verbose_name='Destacada')
+    image = CloudinaryField(resource_type='image', null=True, blank=True, verbose_name='Imagen', default='')
 
     class Meta:
         db_table = 'categoria'

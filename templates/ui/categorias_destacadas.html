@@ -1,14 +1,16 @@
 {% load static %}
 {% if categorias_destacadas %}
-    <h3 class="text-center mt-5 mb-3 text-azul-medtgol">Categorias Destacadas</h3>
+    <h3 class="text-center mt-3 mb-3 text-azul-medtgol">Categorias Destacadas</h3>
     <section class="row row-cols-2 row-cols-sm-2 row-cols-md-5 g-2 justify-content-center mb-5">
         {% for categoria_destacada in categorias_destacadas %}
             <section class="col d-flex justify-content-center">
-                <div class="bg-categorias_destacadas d-flex justify-content-center align-items-center text-center">
-                    <section>
-                        <a href="?categoria={{ categoria_destacada.name }}" style="font-size: 11px"
-                           class="text-decoration-none text-dark fw-bold text-center">{{ categoria_destacada.name }}</a>
-                    </section>
+                <div class=" d-flex justify-content-center align-items-center">
+                    <a href="?categoria={{ categoria_destacada.name }}" style="font-size: 11px"
+                       class="text-decoration-none d-flex flex-column align-items-center">
+                        <img src="{{ categoria_destacada.image.url }}" alt="{{ categoria_destacada.name }}"
+                             class="bg-categorias-destacadas border border-azul-medtgol border-2 p-2">
+                        <p class="text-azul-medtgol fw-bold text-center w-75">{{ categoria_destacada.name }}</p>
+                    </a>
                 </div>
             </section>
         {% endfor %}
