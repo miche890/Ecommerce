@@ -1,6 +1,7 @@
 {% load static %}
 <div class="scrollmenu bg-body-tertiary mb-3 mb-lg-2">
     <a class="text-capitalize fw-bold text-azul-medtgol p-2" style="font-size: 11px">Promociones</a>
+    <a href="{% url 'productos' %}" class="text-capitalize fw-bold text-azul-medtgol p-2" style="font-size: 11px">Todos</a>
     {% for categoria in categorias %}
         <a href="{% url 'productos' %}?categoria={{ categoria.name }}" class="text-capitalize fw-bold text-azul-medtgol p-2" style="font-size: 11px">{{ categoria.name }}</a>
     {% endfor %}
