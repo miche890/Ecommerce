@@ -40,7 +40,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/">Inicio</a></li>
-                        <li><a class="dropdown-item" href="#">Otra accion</a></li>
+                        <li><a class="dropdown-item" href="{% url 'productos' %}">Productos</a></li>
                         <li><a class="dropdown-item" href="#">Otra accion aqui...</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -49,7 +49,7 @@
                     </ul>
                 </div>
 
-                <form class="d-flex w-100" role="search">
+                <form class="d-flex w-100" role="search" action="{% url 'productos' %}" >
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar..." name="consulta" required
                                aria-label="Recipient's username" aria-describedby="button-addon2">
