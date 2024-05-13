@@ -12,7 +12,7 @@ def agregar_producto(request, producto_id):
         cart = Cart(request)
         producto = Producto.objects.get(id=producto_id)
         cart.add(producto)
-        return redirect('index')
+        return redirect('productos')
     else:
         return render(
             request,
