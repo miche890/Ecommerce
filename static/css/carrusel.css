@@ -1,0 +1,10 @@
+.imagen {
+    max-height: 400px;
+}
+
+@media (max-width: 576px) {
+    .imagen {
+        max-height: 200px;
+    }
+}
+

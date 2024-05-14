@@ -5,7 +5,7 @@ from .models import Banners
 # Register your models here.
 
 class BannerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'image')
+    list_display = ('title', 'image')
 
 
 admin.site.register(Banners, BannerAdmin)

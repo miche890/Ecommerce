@@ -20,8 +20,8 @@ class Banners(models.Model):
     def save(self, *args, **kwargs):
         banners = Banners.objects.all()
         if banners:
-            if banners.last().id == 5:
-                return ValueError('No se pueden crear mas de 5 Fotos publicitarias, modifica una existente')
+            if len(banners) >= 5:
+                raise TypeError('No se pueden crear mas de 5 Fotos publicitarias, modifica una existente')
 
         return super().save(*args, **kwargs)
 
