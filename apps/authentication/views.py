@@ -12,7 +12,7 @@ def iniciar_sesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if request.META['HTTP_REFERER'] == 'http://localhost:8000/login/':
+            if request.META['HTTP_REFERER'] == 'http://localhost:8000/login/' or request.META['HTTP_REFERER'] == 'https://ecommerce-app.fly.dev/login/':
                 return redirect('index')
             return redirect(request.META['HTTP_REFERER'])
         else:
