@@ -1,0 +1,10 @@
+{% load cloudinary %}
+<section class="container-fluid my-3">
+    <article class="row row-cols-2">
+        {% for video in videos %}
+            <video controls class="col">
+                <source src="{{ video.video.url }}"/>
+            </video>
+        {% endfor %}
+    </article>
+</section>

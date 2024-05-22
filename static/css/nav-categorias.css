@@ -14,3 +14,9 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: #e0d8d8;
 }
+
+@media (min-width: 1160px) {
+    .justify-content-lg-center-custom {
+        justify-content: center !important;
+    }
+}

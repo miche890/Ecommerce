@@ -1,6 +1,19 @@
 <section class="py-2">
     <div class="container">
-        <h3 class="text-center text-azul-medtgol">Productos</h3>
+        {#        <h3 class="text-center text-azul-medtgol">Productos</h3>#}
+        {% if page_obj|length > 1 %}
+            <section class="mb-3 input-group align-items-center w-25">
+                <label for="campos_select" class="form-label me-1">Ordenar por:</label>
+                <select name="campo" id="campos_select" class="form-select">
+                    <option>---</option>
+                    <option value="name">Nombre</option>
+                    <option value="price">Precio mas bajo</option>
+                    <option value="-price">Precio mas alto</option>
+                    <option disabled >Mas vendido</option>
+                </select>
+            </section>
+        {% endif %}
+
         <section class="row row-cols-2 row-cols-sm-2 row-cols-md-5 g-2" id="productos">
             {% if page_obj|length < 1 %}
                 <div class="alert alert-danger w-100 text-center">

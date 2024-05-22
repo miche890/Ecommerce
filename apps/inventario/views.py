@@ -24,6 +24,10 @@ def lista_productos(request):
     if categoria:
         productos = filtro(productos, categoria)
 
+    campo = request.GET.get('campo', '')
+    if campo:
+        productos = ordenar(productos, campo)
+
     # Paginar productos
     paginator = Paginator(productos, 20)  # Muestra 20 por pagina
     numero_pagina = request.GET.get('page')
@@ -46,4 +50,9 @@ def busqueda(consulta):
 
 def filtro(productos, categoria):
     productos = productos.filter(category__name__contains=categoria)
+    return productos
+
+
+def ordenar(productos, campo):
+    productos = productos.order_by(campo)
     return productos

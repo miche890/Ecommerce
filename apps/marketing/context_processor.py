@@ -1,6 +1,10 @@
-from apps.marketing.models import Banners
+from apps.marketing.models import Banners, VideosPromocionales
 
 
-def get_banners(request):
+def get_promociones(request):
     banners = Banners.objects.all()
-    return {'banners': banners}
+    videos = VideosPromocionales.objects.filter(active=True)
+    return {
+        'banners': banners,
+        'videos': videos
+    }

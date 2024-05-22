@@ -49,15 +49,17 @@
                     </ul>
                 </div>
 
-                <form class="d-flex w-100" role="search" action="{% url 'productos' %}" >
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar..." name="consulta" required
-                               aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-success" type="submit" id="button-addon2">
-                            <i class='bx bx-search'></i>
-                        </button>
-                    </div>
-                </form>
+                <section class="d-flex justify-content-center w-100">
+                    <form class="form-search" role="search" action="{% url 'productos' %}" >
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="consulta" required
+                                   aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-success" type="submit" id="button-addon2">
+                                <i class='bx bx-search'></i>
+                            </button>
+                        </div>
+                    </form>
+                </section>
             </div>
 
 
