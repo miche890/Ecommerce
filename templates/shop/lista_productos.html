@@ -2,15 +2,17 @@
     <div class="container">
         {#        <h3 class="text-center text-azul-medtgol">Productos</h3>#}
         {% if page_obj|length > 1 %}
-            <section class="mb-3 input-group align-items-center w-25">
-                <label for="campos_select" class="form-label me-1">Ordenar por:</label>
-                <select name="campo" id="campos_select" class="form-select">
-                    <option>---</option>
-                    <option value="name">Nombre</option>
-                    <option value="price">Precio mas bajo</option>
-                    <option value="-price">Precio mas alto</option>
-                    <option disabled >Mas vendido</option>
-                </select>
+            <section class="container-filtros mb-2 form-group-sm text-nowrap ">
+                <article class="d-flex align-items-center">
+                    <label for="campos_select" class="me-1 small">Ordenar por:</label>
+                    <select name="campo" id="campos_select" class="form-select form-select-sm">
+                        <option>---</option>
+                        <option value="name">Nombre</option>
+                        <option value="price">Precio mas bajo</option>
+                        <option value="-price">Precio mas alto</option>
+                        <option disabled>Mas vendido</option>
+                    </select>
+                </article>
             </section>
         {% endif %}
 
