@@ -9,10 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('campos_select').addEventListener('change', function() {
     const selectedValue = this.value;
-    if (selectedValue) {
+    if (selectedValue && selectedValue !== '---') {
         const currentUrl = window.location.href;
         const url = new URL(currentUrl)
         url.searchParams.set('campo', selectedValue)
+        window.location.href = url.toString();
+    } else if (selectedValue === '---') {
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl)
+        url.searchParams.delete('campo')
         window.location.href = url.toString();
     }
 })
