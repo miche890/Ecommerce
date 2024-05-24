@@ -40,7 +40,10 @@
                                 <div class="btn-group-vertical">
                                     <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">Añadir
                                         al Caritto</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-bs-toggle="modal" data-bs-target="#infoProducto{{ producto.id }}">Ver mas
+                                    </button>
+                                    {% include 'shop/modal_info_producto.html' %}
                                 </div>
                             </div>
                         </div>

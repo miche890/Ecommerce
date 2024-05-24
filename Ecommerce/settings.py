@@ -257,6 +257,7 @@ JAZZMIN_SETTINGS = {
         "inventario.OrdenCompra": "fas fa-receipt",
         "inventario.CompraProducto": "fas fa-shopping-cart",
         "marketing.Banners": "fas fa-image",
+        "marketing.VideosPromocionales": "fas fa-video",
         'authtoken.TokenProxy': 'fas fa-key'
     },
     'default_icon_parents': 'fas fa-chevron-circle-right',
