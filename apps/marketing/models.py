@@ -21,13 +21,13 @@ class Banners(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        banners = Banners.objects.all()
-        if banners:
-            if len(banners) >= 5:
-                raise TypeError('No se pueden crear mas de 5 Fotos publicitarias, modifica una existente')
-
-        return super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     banners = Banners.objects.all()
+    #     if banners:
+    #         if len(banners) >= 5:
+    #             raise TypeError('No se pueden crear mas de 5 Fotos publicitarias, modifica una existente')
+    #
+    #     return super().save(*args, **kwargs)
 
 
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10  # 10mb
