@@ -27,3 +27,7 @@
 .container-filtros {
     max-width: 260px;
 }
+
+.w-30 {
+    width: 30% !important;
+}

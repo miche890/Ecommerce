@@ -21,7 +21,7 @@
                     <section>
                         <form action="{% url 'agregar_producto_cantidad' producto.id %}"  method="post" class="d-flex flex-wrap">
                             {% csrf_token %}
-                            <section class="input-group w-25 me-2">
+                            <section class="input-group w-30 me-2">
                                 <button class="btn btn-sm btn-warning" type="button" title="minus" id="minus">
                                     <i class='bx bx-minus'></i>
                                 </button>
