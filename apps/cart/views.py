@@ -23,6 +23,24 @@ def agregar_producto(request, producto_id):
         )
 
 
+def agregar_producto_cantidad(request, producto_id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            cantidad = int(request.POST['cantidad'])
+            cart = Cart(request)
+            producto = Producto.objects.get(id=producto_id)
+            cart.add_quantity(producto, cantidad)
+            return redirect('productos')
+    else:
+        return render(
+            request,
+            'authentication/login.html',
+            {
+                'error_message': 'Para poder añadir productos al carrito inicia sesion'
+            }
+        )
+
+
 def eliminar_producto(request, producto_id):
     cart = Cart(request)
     producto = Producto.objects.get(id=producto_id)

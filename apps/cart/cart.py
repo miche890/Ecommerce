@@ -26,6 +26,25 @@ class Cart:
 
         self.save()
 
+    def add_quantity(self, product, quantity):
+        if str(product.id) not in self.cart.keys():
+            self.cart[str(product.id)] = {
+                'product_id': product.id,
+                'name': product.name,
+                'description': product.description,
+                'quantity': quantity,
+                'total': product.price * quantity,
+                'image': product.imagen.url,
+            }
+        else:
+            for key, value in self.cart.items():
+                if key == str(product.id):
+                    value['quantity'] = value['quantity'] + quantity
+                    value['total'] = value['total'] + (product.price * quantity)
+                    break
+
+        self.save()
+
     def save(self):
         self.session['cart'] = self.cart
         self.session.modified = True  # Con esto indicamos a django que persista los datos
