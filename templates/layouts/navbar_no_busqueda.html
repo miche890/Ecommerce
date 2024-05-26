@@ -7,8 +7,8 @@
             </a>
             {% if not user.username %}
                 <div class="d-flex align-items-center justify-content-around">
-                    <a class="btn btn-sm btn-info ms-1" href="{% url 'login' %}">
-                        <p class="small m-0">Iniciar Sesion</p>
+                    <a class="btn rounded-circle btn-info px-2 py-1 mx-1" href="{% url 'login' %}">
+                        <i class='bx bxs-user'></i>
                     </a>
                     <a class="btn btn-sm btn-dark ms-1" href="{% url 'register' %}">
                         <p class="small m-0">Registrarse</p>
