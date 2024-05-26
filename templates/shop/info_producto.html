@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>{{ Producto.name }}</title>
+    <link href="{% static 'css/nav-categorias.css' %}" rel="stylesheet">
+    <link href="{% static 'css/categorias-destacadas.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+    {% include 'layouts/navbar.html' %}
+    {% include 'ui/categorias.html' %}
+{% endblock %}
+
+{% block body %}
+    {% include 'shop/producto.html' %}
+    {% include 'ui/boton_whatsapp.html' %}
+    <script src="{% static 'js/producto.js' %}"></script>
+{% endblock %}

@@ -38,15 +38,14 @@
                             {% load humanize %}
                             <p class="card-text text-danger fw-bold small m-0">$ {{ producto.price|intcomma }}</p>
                             <div class="d-flex justify-content-around align-items-center flex-wrap mt-1">
-                                {#                                <small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>#}
+                                {#<small class="text-body-secondary w-100 text-end text-uppercase">{{ producto.category }}</small>#}
                                 <div class="btn-group-vertical">
-                                    <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">Añadir
-                                        al Caritto</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            data-bs-toggle="modal" data-bs-target="#infoProducto{{ producto.id }}">Ver
-                                        mas
-                                    </button>
-                                    {% include 'shop/modal_info_producto.html' %}
+                                    <a href="{% url 'agregar_producto' producto.id %}" class="btn btn-sm btn-info">
+                                        Añadir al Caritto
+                                    </a>
+                                    <a href="{% url 'producto' producto.id %}" class="btn btn-sm btn-outline-secondary">
+                                        Ver mas
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
 from .models import Categoria, Producto, Inventario, OrdenCompra, CompraProducto
+from .utils import busqueda, filtro, ordenar, get_producto
 
 from ..cart.cart import Cart
 
@@ -43,16 +44,21 @@ def lista_productos(request):
     )
 
 
-def busqueda(consulta):
-    productos = Producto.objects.filter(name__icontains=consulta)
-    return productos
+def info_producto(request, producto_id):
+    respuesta = get_producto(producto_id)
+    error_message = ""
+    producto = None
 
+    if type(respuesta) is str:
+        error_message = respuesta
+    else:
+        producto = respuesta
 
-def filtro(productos, categoria):
-    productos = productos.filter(category__name__contains=categoria)
-    return productos
-
-
-def ordenar(productos, campo):
-    productos = productos.order_by(campo)
-    return productos
+    return render(
+        request,
+        'shop/info_producto.html',
+        {
+            'producto': producto,
+            'error_message': error_message,
+        }
+    )
