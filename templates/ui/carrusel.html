@@ -3,11 +3,15 @@
         {% for banner in banners %}
             {% if banner.id == 1 %}
                 <div class="carousel-item w-100 active">
-                    <img src="{{ banner.image.url }}" class="d-block mx-auto w-100 imagen" alt="{{ banner.tittle }}">
+                    {% load cloudinary %}
+                    {% cloudinary banner.image width=1100 height=400 crop='pad' background='gen_fill:ignore-foreground_true' class='d-block mx-auto w-100 imagen' %}
+{#                    <img src="{{ banner.image.url }}" class="d-block mx-auto w-100 imagen" alt="{{ banner.tittle }}">#}
                 </div>
             {% else %}
                 <div class="carousel-item w-100">
-                    <img src="{{ banner.image.url }}" class="d-block mx-auto w-100 imagen" alt="{{ banner.tittle }}">
+                    {% load cloudinary %}
+                    {% cloudinary banner.image width=1100 height=400 crop='pad' background='gen_fill:ignore-foreground_true' class='d-block mx-auto w-100 imagen' %}
+{#                    <img src="{{ banner.image.url }}" class="d-block mx-auto w-100 imagen" alt="{{ banner.tittle }}">#}
                 </div>
             {% endif %}
         {% endfor %}
