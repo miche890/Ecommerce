@@ -19,9 +19,10 @@
                     {% load humanize %}
                     <p class="card-text h4 text-danger fw-bold">$ {{ producto.price|intcomma }}</p>
                     <section>
-                        <form action="{% url 'agregar_producto_cantidad' producto.id %}"  method="post" class="d-flex flex-wrap">
+                        <form action="{% url 'agregar_producto_cantidad' producto.id %}" method="post"
+                              class="d-flex flex-wrap">
                             {% csrf_token %}
-                            <section class="input-group w-30 me-2">
+                            <section class="input-group w-30 me-1 mt-1">
                                 <button class="btn btn-sm btn-warning" type="button" title="minus" id="minus">
                                     <i class='bx bx-minus'></i>
                                 </button>
@@ -32,7 +33,10 @@
                                     <i class='bx bx-plus'></i>
                                 </button>
                             </section>
-                            <button class="btn btn-sm btn-warning me-2" type="submit" >Agregar al carrito</button>
+                            <button class="btn btn-sm btn-warning me-1 mt-1" type="submit">Agregar al carrito</button>
+                            <a href="{% url 'ver_cart' %}" class="btn btn-warning me-1 mt-1">
+                                Comprar
+                            </a>
                         </form>
                     </section>
                 </section>
