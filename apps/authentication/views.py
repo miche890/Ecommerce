@@ -52,6 +52,10 @@ def registrar_usuario(request):
             error_message = 'El nombre de usuario ya esta registrado.'
             return render(request, 'authentication/register.html', {'error_message': error_message})
 
+        if User.objects.filter(email=email).exists():
+            error_message = 'El email ya esta registrado.'
+            return render(request, 'authentication/register.html', {'error_message': error_message})
+
         user = User.objects.create_user(username, email, password)
         login(request, user)
         return redirect('index')
