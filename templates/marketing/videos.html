@@ -1,10 +1,14 @@
 {% load cloudinary %}
 <section class="container-fluid my-3">
-    <article class="row row-cols-2">
+    <h3 class="text-center mt-3 mb-4 text-azul-medtgol opacity-75">Lanzamientos y Promociones</h3>
+    <section class="row row-cols-2">
         {% for video in videos %}
-            <video controls class="col">
-                <source src="{{ video.video.url }}"/>
-            </video>
+            <article class="col">
+                <video controls class="w-100" title="{{ video.title }}" loop autoplay>
+                    <source src="{{ video.video.url }}"/>
+                </video>
+                <p class="text-center text-capitalize mb-4 text-azul-medtgol opacity-75">{{ video.title }}</p>
+            </article>
         {% endfor %}
-    </article>
+    </section>
 </section>
