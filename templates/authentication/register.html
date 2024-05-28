@@ -33,23 +33,28 @@
                 <img class="mb-4" src="https://i.postimg.cc/9F01mBLP/default-log.png" alt="logo" width="72" height="57">
                 <h1 class="h3 mb-3 fw-normal">Por favor registrarse</h1>
                 <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="user" name="username">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="user" name="username" required>
                     <label for="floatingInput">Nombre de usuario</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="example@gmail.com" name="email">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="example@gmail.com"
+                           name="email" required>
                     <label for="floatingInput">Correo electronico</label>
                 </div>
-                <div class="form-floating mb-2">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                           name="password">
-                    <label for="floatingPassword">Contraseña</label>
+                <div class="form-floating input-group mb-2">
+                    <input type="password" class="form-control" id="floatingPassword1" placeholder="Password"
+                           name="password" required>
+                    <label for="floatingPassword1">Contraseña</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                           name="confirm_password">
-                    <label for="floatingPassword">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password"
+                           name="confirm_password" required>
+                    <label for="floatingPassword2">Confirmar Contraseña</label>
                 </div>
+                <div class="mb-2">
+                    <input class="form-check-input" id="seePasswords" type="checkbox" aria-label="visibility"> Ver contraseñas
+                </div>
+                
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-primary w-100 text-nowrap py-2 mx-1" type="submit">Registrate</button>
                     <a class="btn btn-secondary w-100 text-nowrap py-2 mx-1" href="{% url 'login' %}">Iniciar sesion</a>
@@ -62,4 +67,5 @@
             {% endif %}
         </main>
     </div>
+    <script src="{% static 'js/forms.js' %}"></script>
 {% endblock %}
