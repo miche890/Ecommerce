@@ -12,6 +12,7 @@ from cloudinary.models import CloudinaryField
 class Banners(models.Model):
     title = models.CharField(max_length=100, verbose_name='Titulo')
     image = CloudinaryField(resource_type='image', verbose_name='Imagen', default='')
+    destacada = models.BooleanField(default=False, verbose_name='Destacada')
 
     class Meta:
         db_table = 'Foto Publicitaria'

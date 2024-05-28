@@ -5,7 +5,7 @@ from .models import Banners, VideosPromocionales
 # Register your models here.
 
 class BannerAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image')
+    list_display = ('title', 'image', 'destacada')
 
 
 admin.site.register(Banners, BannerAdmin)

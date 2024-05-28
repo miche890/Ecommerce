@@ -1,0 +1,13 @@
+{% load cloudinary %}
+<section class="container-fluid my-3">
+    <section class="row row-cols-2">
+        {% for banner_destacado in banners_destacados %}
+            <article class="col">
+                <picture class="w-100" title="{{ banner_destacado.title }}">
+                    <img class="w-100" src="{{ banner_destacado.image.url }}" alt="{{ banner_destacado.title }}"/>
+                </picture>
+                <p class="text-center text-capitalize mb-4 text-azul-medtgol opacity-75">{{ banner_destacado.title }}</p>
+            </article>
+        {% endfor %}
+    </section>
+</section>
